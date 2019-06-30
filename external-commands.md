@@ -1,11 +1,6 @@
 External Commands in Vim
 ========================
 
-
-Sun 30 Jun 2019 15:57:48 IST
-Sun Jun 30 15:58:33 IST 2019
-Sun Jun 30 15:58:41 IST 2019
-
 Insert Files
 ------------
 * The `:r[file]` reads.
