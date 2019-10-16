@@ -29,3 +29,9 @@ Output some local network addresses:
 192.168.0.4
 192.168.0.5
 ```
+
+References
+----------
+[Looping in Vim][1]
+
+[1]: https://vim.fandom.com/wiki/Making_a_list_of_numbers
