@@ -30,6 +30,11 @@ Open in new tab:
 ctrl-W
 gf
 ```
+Close newly opened tab:
+
+```
+:bd
+```
 
 Open man Page
 -------------
