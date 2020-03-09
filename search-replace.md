@@ -1,7 +1,7 @@
 # Search & Replace in Vim
 Search and replace in Vim takes the form:
 
-```
+```vim
 :range s[ubstitute]/pattern/replacement/cgiI
 ```
 For each line in `range` replace a match of `pattern` with `replacement`. The final flag denotes how the match is carried out:
@@ -15,13 +15,13 @@ For each line in `range` replace a match of `pattern` with `replacement`. The fi
 Select lines to search & replace:
 
 Find all instances of "original" in lines 10 - 20 inclusive and replace with the string "replacement":
-```
+```vim
 :10,20s/original/replacement/g
 ```
 Select the entire document with `:%`:
 
 Find all instances of "original" in the entire document and replace with "replacement":
-```
+```vim
 :%s/original/replacement/g
 ```
 Anchors
