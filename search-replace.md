@@ -45,8 +45,34 @@ You can target beginning and end of lines:
 # Match lines where "lorem" is the only word:
 :%s/^Lorem$/LOREM/g
 ```
+Separators
+----------
+The '/' symbol has been used as a separator in the preceding examplesi. Most non-alphanumeric characters can be used so long as the separator is applied consistently. Note that `\`, `"` or `|` should not be used.
+
+Quantifiers
+-----------
+TODO
 
 Pattern Capture
 ----------------
+TODO
  
+Example: Capture Data and Process Before Replacement
+----------------------------------------------------
+This example converts values in `px` units to `rem`. It uses the `#` character as a separator:
 
+```vim
+:%s#\(\d\+\)px#\=printf("%.02f", (submatch(1) / 16.0))."rem"#
+```
+
+- It searches the entire document and captures digits that precede the string "px", and matches the digits and the "px".
+- It then writes back the captured data using `printf()`.
+- Within the `printf()` function, the captured data is processed (converted from px units to rem).
+- The string "rem" is added to the processed data
+
+The `printf()` format specifier can be used to set precision - in this case, 2 significant figures after the decimal: `"%.02f"`.
+
+[See this thread][2] for more.
+
+[1]: http://www.vimregex.com/
+[2]: https://www.reddit.com/r/vim/comments/feeaub/so_i_needed_to_replace_all_px_to_rems_in_a_css/
