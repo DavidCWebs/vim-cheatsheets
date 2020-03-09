@@ -1,5 +1,5 @@
 # Search & Replace in Vim
-Search and replace in Vim takes the form:
+Search replace in Vim takes the form:
 
 ```vim
 :range s[ubstitute]/pattern/replacement/cgiI
@@ -51,7 +51,28 @@ The '/' symbol has been used as a separator in the preceding examplesi. Most non
 
 Quantifiers
 -----------
-TODO
+- `*`: Matches zero or more of the preceding characters, ranges or metacharacters. `.*` matches everything, including empty lines.
+- `\+`: Matches one or more of the preceding characters.
+- `\=`: Matches zero or one of the preceding characters.
+- `\{n,m}`: Matches from n to m of the preceding characters.
+- `{n}`: Matches exactly n times of the preceding characters.
+- `{,m}`: Matches at most m (from 0 to m) of the preceding characters.
+- `{n,}`: Matches at least n of the preceding characters.
+
+
+Example: Non Greedy Matching
+----------------------------
+For the sentence:
+
+`Qui quis vi autet dicta atque est sunt "xxx" voluptate. "Alias" officia`
+
+The following command replaces the first quoted string only.
+```vim
+:13s/".\{-}"/"xxx"/
+```
+Result:
+
+`Qui quis vi autet dicta atque est sunt "xxx" voluptate. "Alias" officia`
 
 Pattern Capture
 ----------------
@@ -62,7 +83,10 @@ Example: Capture Data and Process Before Replacement
 This example converts values in `px` units to `rem`. It uses the `#` character as a separator:
 
 ```vim
-:%s#\(\d\+\)px#\=printf("%.02f", (submatch(1) / 16.0))."rem"#
+:%s#\(\d\+\)px#\=printf("%.02f", (submatch(1) / 16.0))."rem"#g
+
+# This could be simplified with the `\v` very-magic specifier:
+:%s#\v(\d+)px#\=printf("%.02f", (submatch(1) / 16.0))."rem"#g
 ```
 
 - It searches the entire document and captures digits that precede the string "px", and matches the digits and the "px".
@@ -71,6 +95,8 @@ This example converts values in `px` units to `rem`. It uses the `#` character a
 - The string "rem" is added to the processed data
 
 The `printf()` format specifier can be used to set precision - in this case, 2 significant figures after the decimal: `"%.02f"`.
+
+The second example with the "very magic" setting means you can use unescaped parentheses to capture the group, and you don't need to escape the `+` symbol (which denotes one or more of the preceding characters).
 
 [See this thread][2] for more.
 
