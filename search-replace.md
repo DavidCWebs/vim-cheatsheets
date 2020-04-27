@@ -47,7 +47,7 @@ You can target beginning and end of lines:
 ```
 Separators
 ----------
-The '/' symbol has been used as a separator in the preceding examplesi. Most non-alphanumeric characters can be used so long as the separator is applied consistently. Note that `\`, `"` or `|` should not be used.
+The '/' symbol has been used as a separator in the preceding examples. Most non-alphanumeric characters can be used so long as the separator is applied consistently. Note that `\`, `"` or `|` should not be used.
 
 Quantifiers
 -----------
@@ -64,7 +64,7 @@ Example: Non Greedy Matching
 ----------------------------
 For the sentence:
 
-`Qui quis vi autet dicta atque est sunt "xxx" voluptate. "Alias" officia`
+`Qui quis vi autet dicta atque est sunt "aaa" voluptate. "Alias" officia`
 
 The following command replaces the first quoted string only.
 ```vim
@@ -74,10 +74,36 @@ Result:
 
 `Qui quis vi autet dicta atque est sunt "xxx" voluptate. "Alias" officia`
 
+`\{-}` Matches 0 or more of the preceding atom - in this case, any character. So "" and "abc" are both replaced with "xxx".
+
+
 Pattern Capture
 ----------------
 TODO
  
+Example: Clean up Whitespace
+----------------------------
+Convert two or more space characters to a tab character.
+
+```vim
+:%s/\s\s\+/\t/g
+```
+
+Example: Remove Leading Whitespace
+----------------------------------
+```vim
+:%s/^\s\+//g
+
+# No error displayed if no leading whitespace found
+:%s/^\s\+//e
+```
+
+Example: Remove Trailing Whitespace
+-----------------------------------
+```vim
+:%s/\s\+$//e
+```
+
 Example: Capture Data and Process Before Replacement
 ----------------------------------------------------
 This example converts values in `px` units to `rem`. It uses the `#` character as a separator:
@@ -99,6 +125,10 @@ The `printf()` format specifier can be used to set precision - in this case, 2 s
 The second example with the "very magic" setting means you can use unescaped parentheses to capture the group, and you don't need to escape the `+` symbol (which denotes one or more of the preceding characters).
 
 [See this thread][2] for more.
+
+References
+----------
+* [Really good Vim Regex article][1]
 
 [1]: http://www.vimregex.com/
 [2]: https://www.reddit.com/r/vim/comments/feeaub/so_i_needed_to_replace_all_px_to_rems_in_a_css/
