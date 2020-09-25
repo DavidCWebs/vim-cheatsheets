@@ -136,6 +136,17 @@ Insert Characters at a Particular Column
 * Type the text to insert, which will only display on the first line
 * Exit insert, `Ctrl+{` or `esc` twice
 
+Replace All Underlined H2 Styles with H3
+----------------------------------------
+Useful when converting h2 headings to h3 in markdown documents.
+
+Search in the range for a newline followed by any number of '-' characters, in turn followed by a newline, capturing the group up to the first newline.
+Replace with the capture group with "### " prepended and a single newline appended.
+
+```vim
+:%s/\(.*\)\n-\+\n/### \1\r/g
+```
+
 
 References
 ----------
