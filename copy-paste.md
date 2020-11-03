@@ -12,17 +12,17 @@ Add to a specific register:
 
 ```vim
 # To clipboard
-:set @+ = expand("%:p")
+:let @+=expand("%:p")
 
 # To unnamed register, use `p` to paste:
-:set @" = expand("%:p")
+:let @"=expand("%:p")
 ```
 
 Yank the current file path in one window and put into the command buffer in another window:
 
 ```vim
 # Yank path to main clipboard buffer (not system clipboard)
-:let @" = expand("%:p")
+:let @"=expand("%:p")
 
 # Open a new window
 :sp
