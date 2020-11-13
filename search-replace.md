@@ -147,6 +147,25 @@ Replace with the capture group with "### " prepended and a single newline append
 :%s/\(.*\)\n-\+\n/### \1\r/g
 ```
 
+Add a Closing Quote/Backtick etc
+--------------------------------
+Using `\{-}` in place of `*` is use din the search pattern - this matches 0 or more of the preceding atom, as few characters as possible (non-greedy matching).
+
+The text:
+
+```
+* `some code : A description
+
+Should be transformed to:
+
+* `some code`: A description
+```
+
+
+```vim
+:5,14s/\(`.\{-}\) /\1`/g
+```
+
 
 References
 ----------
